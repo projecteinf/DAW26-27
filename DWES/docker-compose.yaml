@@ -1,0 +1,19 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    restart: always
+    user: root
+    container_name: MsSqlServer
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passw0rd!
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./DB:/var/opt/mssql/data
+    networks:
+      - code-network
+
+networks:
+    code-network:
+        driver: bridge
